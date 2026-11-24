@@ -2,6 +2,7 @@
 import tkinter as tk
 from tkinter import ttk
 
+
 class NoteManager:
     def __init__(self):
         self.root = tk.Tk()
@@ -49,9 +50,52 @@ class NoteManager:
 
         self.grademanager = ttk.LabelFrame(self.root, text="Gestión de notas")
         self.grademanager.place(relwidth=0.625, relheight=.91, y=10, x=-10, relx=1.0, anchor="ne")
-
+        
         self.viewAverage = ttk.Label(self.root)
         self.viewAverage.place(relwidth=0.625, relheight=.05, rely=1.0, y=-50, x=-10, relx=1.0, anchor="ne")
+
+
+        self.contTableGradeManager = ttk.Label(self.grademanager, background="black")
+        self.contTableGradeManager.place(relwidth=1, y=40, relheight=.3 )
+
+    def createButton(self, botones):
+
+        columna = 0
+        fila = 0
+
+        for boton, action in botones:
+            btn = ttk.Button(self.grademanager, text=boton, command=action)
+            btn.grid(column=columna, row=fila, padx=5, pady=5)
+         
+            columna +=1
+
+    def createTableGradeManagement(self):
+        self.tableOfGrade = ttk.Treeview(self.contTableGradeManager, columns=("Assignment", "Score", "Weight", "Date", "Observation"), show="headings")
+       
+        
+
+        self.tableOfGrade.heading("Assignment", text="Asignatura")
+        self.tableOfGrade.heading("Score", text="Calificación")
+        self.tableOfGrade.heading("Weight", text="Porcentaje")
+        self.tableOfGrade.heading("Date", text="Fecha")
+        self.tableOfGrade.heading("Observation", text="Observación")
+      
+
+        self.tableOfGrade.column("Assignment", width=100, anchor="center")
+        self.tableOfGrade.column("Score", width=100, anchor="center")
+        self.tableOfGrade.column("Weight", width=100, anchor="center")
+        self.tableOfGrade.column("Date", width=100, anchor="center")
+        self.tableOfGrade.column("Observation", width=100, anchor="center")
+
+        
+       
+
+        self.tableOfGrade.place(relwidth=.985, relheight=1, x=5)
+
+
+
+
+
 
     def powerOn(self):
         self.root.mainloop()
