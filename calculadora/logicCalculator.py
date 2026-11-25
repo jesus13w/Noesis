@@ -1,39 +1,42 @@
 import tkinter as tk
-#from tkinter import ttk
 class LogicCalculator:
 
-    def __init__(self):
-        #LLamar las funciones con parentesis hace que se ejecuten al iniciar el programa
-        #lo que provoca un error
+    def __init__(self, entrada):
+        self.entrada = entrada
+        
         
         self.botones=[
 
-            ("1", self.escribir), #("1")),
-            ("2", self.escribir), #("2")),
-            ("3", self.escribir), #("3")),
+            ("1", lambda : self.escribir("1")),
+            ("2", lambda : self.escribir("2")),
+            ("3", lambda : self.escribir("3")),
             ("c", self.borrar),
-            ("4", self.escribir), #("4")),
-            ("5", self.escribir), #("5")),
-            ("6", self.escribir), #("6")),
-            ("+", self.escribir), #("+")),
-            ("7", self.escribir), #("7")),
-            ("8", self.escribir), #("8")),
-            ("9", self.escribir), #("9")),
-            ("-", self.escribir), #("-")),
-            ("0", self.escribir), #("0")),
-            ("/", self.escribir), #("/")),
-            ("*", self.escribir), #("*")),
+            ("4", lambda : self.escribir("4")),
+            ("5", lambda : self.escribir("5")),
+            ("6", lambda : self.escribir("6")),
+            ("+", lambda : self.escribir("+")),
+            ("7", lambda : self.escribir("7")),
+            ("8", lambda : self.escribir("8")),
+            ("9", lambda : self.escribir("9")),
+            ("-", lambda : self.escribir("-")),
+            ("0", lambda : self.escribir("0")),
+            ("/", lambda : self.escribir("/")),
+            ("*", lambda : self.escribir("*")),
             ("=", self.calcular)
         ]
 
-    
+    # El problema era que mis funciones utilizan un widget/objeto llamado "self.entrada" y
+    # la clase "LogicCalculator" no tiene ni puta idea de que es eso. Investigué por ahi
+    # y encontre un nuevo término/concepto INYECCIÓN DE DEPENDENCIA, y con esa vaina resolví el problema.
+
+    # Ignoren el hecho de que me estaba pegando una calculadora.
 
 
     def borrar(self):
         self.entrada.delete(0, tk.END)
 
     
-    # Modificar esta función para poder escribir sin pasarle los parámetros desde la lista de botones
+
     def escribir(self, texto):
         self.entrada.insert(tk.END, texto)
 

@@ -25,7 +25,6 @@ class Calc:
         for boton, accion in botones:
             btn = ttk.Button(self.frame_btn, text=boton, command=accion)
             btn.grid(row=fila, column=columna, pady=2, padx=2, sticky="nsew")
-            btn.winfo_rgb(color="Black")
 
             columna+=1
             if columna == 4:
