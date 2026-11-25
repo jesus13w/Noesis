@@ -3,6 +3,8 @@ import tkinter as tk
 class LogicCalculator:
 
     def __init__(self):
+        #LLamar las funciones con parentesis hace que se ejecuten al iniciar el programa
+        #lo que provoca un error
         
         self.botones=[
 
@@ -30,6 +32,8 @@ class LogicCalculator:
     def borrar(self):
         self.entrada.delete(0, tk.END)
 
+    
+    # Modificar esta función para poder escribir sin pasarle los parámetros desde la lista de botones
     def escribir(self, texto):
         self.entrada.insert(tk.END, texto)
 

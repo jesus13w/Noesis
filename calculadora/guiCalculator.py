@@ -16,21 +16,7 @@ class Calc:
         self.frame_btn = ttk.Frame(self.root)
         self.frame_btn.place(x=10, y=70, width=230, height=230)
 
-    def borrar(self):
-        self.entrada.delete(0, tk.END)
 
-    def escribir(self, texto):
-        self.entrada.insert(tk.END, texto)
-
-
-    def calcular(self):
-        try:
-            resultado = eval(self.entrada.get())
-            self.borrar()
-            self.entrada.insert(0, str(resultado))
-        except:
-            self.borrar()
-            self.entrada.insert(0, "Error")
 
     def crear_btns(self, botones):
         fila = 0
@@ -54,28 +40,3 @@ class Calc:
     def on(self):
         self.root.mainloop()
 
-if __name__=="__main__":
-    app = Calc()
-
-    botones=[
-
-        ("1", lambda: app.escribir("1")),
-        ("2", lambda: app.escribir("2")),
-        ("3", lambda: app.escribir("3")),
-        ("c", app.borrar),
-        ("4", lambda: app.escribir("4")),
-        ("5", lambda: app.escribir("5")),
-        ("6", lambda: app.escribir("6")),
-        ("+", lambda: app.escribir("+")),
-        ("7", lambda: app.escribir("7")),
-        ("8", lambda: app.escribir("8")),
-        ("9", lambda: app.escribir("9")),
-        ("-", lambda: app.escribir("-")),
-        ("0", lambda: app.escribir("0")),
-        ("/", lambda: app.escribir("/")),
-        ("*", lambda: app.escribir("*")),
-        ("=", app.calcular)
-    ]
-
-    app.crear_btns(botones)
-    app.on()
